@@ -13,8 +13,11 @@ if ( ! defined('ABSPATH') ) {
 
 class Cpost{
     function __construct() {
+        //register_activation_hook(__FILE__, array($this, "function_name"));
+	//register_deactivation_hook(__FILE__, array($this, "function_name"));
         $this->register_post_type();
         $this->taxonomies();
+        $this->metaboxes();
     }
     function register_post_type()
     {
@@ -71,6 +74,39 @@ public function register_all_taxonomies($taxonomies)
         register_taxonomy($name, array('cpost'),$arr);
     }
 }
+
+
+public function metaboxes()
+{
+    function mtbx()
+    {
+        add_meta_box('cpost_author','Author','author','cpost');
+    }
+    add_action('add_meta_boxes','mtbx');
+    
+    function author($post)
+    {
+        $author= get_post_meta($post->ID, 'cpost_author', true);
+        ?>
+<p>
+    <label for="cpost_author">Author:</label>
+    <input type="text" class="widefat" name="cpost_author" id="cpost_author" value="<?php echo esc_attr($author);?>"/>
+</p>
+        <?php
+    }
+    
+    function svpst($id)
+    {
+        if(isset($_POST['cpost_author']))
+        {
+            update_post_meta($id, 'cpost_author', strip_tags($_POST['cpost_author']));
+        }
+    }
+    
+    add_action('save_post','svpst');
+    
+}
+
 
 
 }
