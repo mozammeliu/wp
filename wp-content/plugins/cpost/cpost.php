@@ -14,6 +14,7 @@ if ( ! defined('ABSPATH') ) {
 class Cpost{
     function __construct() {
         $this->register_post_type();
+        $this->taxonomies();
     }
     function register_post_type()
     {
@@ -43,6 +44,35 @@ class Cpost{
         );
         register_post_type('cpost',$args);
 }
+
+public function taxonomies()
+{
+    $taxonomies=array();
+    $taxonomies['cat']=array(
+        'hierarchical'=>TRUE,
+        'query_var'=>'cpost_cat',
+        'rewrite'=>array(
+            'slug'=>'cpost/cat'
+        ),
+        //https://codex.wordpress.org/Function_Reference/register_taxonomy
+        'labels'=>array(
+            'name'=>'Category',
+            'singular_name'=>'cat',
+            'add_new_item'=>'Add Cat',
+            'all_item'=>'All Cat'
+        )
+    );
+    $this->register_all_taxonomies($taxonomies);
+}
+public function register_all_taxonomies($taxonomies)
+{
+    foreach($taxonomies as $name=>$arr)
+    {
+        register_taxonomy($name, array('cpost'),$arr);
+    }
+}
+
+
 }
 
 function fnc()

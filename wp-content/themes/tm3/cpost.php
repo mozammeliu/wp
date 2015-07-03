@@ -15,6 +15,9 @@ $cpost= New WP_Query($args);
 while($cpost->have_posts())
 {
     $cpost->the_post();
+//    echo "<pre>";
+//    print_r($cpost);
+//     echo "</pre>";
     echo "<a href='".get_the_permalink()."'>";
 	the_title();
 	echo "</a>";
