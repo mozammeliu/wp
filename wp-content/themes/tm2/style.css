@@ -1,0 +1,10 @@
+/*
+Theme Name: TechMasters2
+*/
+
+.banner{
+    height:400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding:80px;
+}
