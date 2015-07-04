@@ -70,10 +70,12 @@ function mozammel_setup() {
 	) );
 
 	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'mozammel_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
+//	add_theme_support( 'custom-background', apply_filters( 'mozammel_custom_background_args', array(
+//		'default-color' => 'ffffff',
+//		'default-image' => '',
+//	) ) );
+        $img_def= get_template_directory_uri()."/image/header.jpg";
+        add_theme_support("custom-header",array("default-image"=>"$img_def","width"=>1170,height=>400,"flex-height"=>true,"header-text"=>true));
 }
 endif; // mozammel_setup
 add_action( 'after_setup_theme', 'mozammel_setup' );
@@ -112,9 +114,9 @@ add_action( 'widgets_init', 'mozammel_widgets_init' );
  * Enqueue scripts and styles.
  */
 function mozammel_scripts() {
-	wp_enqueue_style( 'mozammel-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'mozammel-style', get_template_directory_uri()."/style.css" );
 
-	wp_enqueue_script( 'mozammel-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+	wp_enqueue_style( 'bootstrap', "//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css");
 
 	wp_enqueue_script( 'mozammel-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
