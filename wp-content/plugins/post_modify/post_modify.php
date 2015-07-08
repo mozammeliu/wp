@@ -9,7 +9,7 @@ Plugin Name: Post Modify
  * Licence: No Licence
  */
  
-
+/*
 add_action('the_title','post_modification');
 function post_modification($the_title)
 {
@@ -25,7 +25,7 @@ add_action('the_content', function($content)
     return $content;    
     }
 });
-
+*/
 add_shortcode('mlh', 'fst');
 function fst($atts,$content)
 {

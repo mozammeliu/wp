@@ -38,7 +38,7 @@ get_header(); ?>
                                 {
                                     
                                    get_template_part( 'template-parts/mlh5', get_post_format() );
-                                  get_template_part( 'template-parts/advertisement', get_post_format() );
+                                  get_template_part( 'template-parts/mlhadvertisement', get_post_format() );
                                 }
                               if($mlh==7 or $mlh==8)
                                 {
@@ -63,16 +63,17 @@ get_header(); ?>
 					 * If you want to override this in a child theme, then include a file
 					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 					 */
-					get_template_part( 'template-parts/mlhcontent', get_post_format() );
+					//get_template_part( 'template-parts/mlhcontent', get_post_format() );
 				?>
 
 			<?php endwhile; ?>
 
-			<?php the_posts_navigation(); ?>
+			<!--<?php the_posts_navigation(); ?>-->
 
 		<?php else : ?>
 
-			<?php get_template_part( 'template-parts/mlhcontent', 'none' ); ?>
+			<?php //get_template_part( 'template-parts/mlhcontent', 'none' ); 
+                        ?>
 
 		<?php endif; ?>
 
